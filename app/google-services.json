@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "848204246218",
+    "project_id": "cocomelon-390411",
+    "storage_bucket": "cocomelon-390411.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848204246218:android:9f4bd51b26abce25185833",
+        "android_client_info": {
+          "package_name": "aculix.channelify.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848204246218-c45bopnvgvu0rtfs6n5mil9fkdgiq9d5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "aculix.channelify.app",
+            "certificate_hash": "000daa22f173f7797c0599e234fae095f2301211"
+          }
+        },
+        {
+          "client_id": "848204246218-v5b645j1qai2u0ripp2rdd42cn7s6sp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2HjqO5xUUydmmwq0JTL6_NwAE0wjT_cM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848204246218-v5b645j1qai2u0ripp2rdd42cn7s6sp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
