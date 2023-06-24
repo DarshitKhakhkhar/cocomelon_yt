@@ -1,61 +1,67 @@
 package aculix.channelify.app.activity
-
-import aculix.channelify.app.Channelify
 import aculix.channelify.app.R
-import aculix.channelify.app.utils.getAdaptiveBannerAdSize
-import aculix.core.extensions.makeGone
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var adView: AdView
-    private var initialLayoutComplete = false
+
+    lateinit var interstitialAd: InterstitialAd
+    lateinit var adRequest: AdRequest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // on below line we are
+        // initializing our mobile ads.
+        MobileAds.initialize(this)
+
+        // on below line we are
+        // initializing our ad request.
+        adRequest = AdRequest.Builder().build()
+
+        // on below line we are
+        // initializing our interstitial ad.
+        interstitialAd = InterstitialAd(this)
+
+        // on below line we are setting ad
+        // unit id for our interstitial ad.
+        interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+//        interstitialAd.adUnitId = "ca-app-pub-9210368304205371/2753658138"
+
+        // on below line we are loading
+        // our ad with ad request
+        interstitialAd.loadAd(adRequest)
+
+        // on below line we are setting ad
+        // listener for our interstitial ad.
+        interstitialAd.setAdListener(object : AdListener() {
+            override fun onAdLoaded() {
+                // on below line we are calling display
+                // ad function to display interstitial ad.
+                displayInterstitialAd(interstitialAd)
+            }
+        })
 
         val navController = findNavController(R.id.navHostFragment)
         bottomNavView.setupWithNavController(navController)
 
-        if (Channelify.isAdEnabled) setupAd() else adViewContainerMain.makeGone()
-
     }
 
-    override fun onPause() {
-        if (Channelify.isAdEnabled) adView.pause()
-        super.onPause()
-    }
 
-    override fun onResume() {
-        if (Channelify.isAdEnabled) adView.resume()
-        super.onResume()
-    }
-
-    override fun onDestroy() {
-        if (Channelify.isAdEnabled) adView.destroy()
-        super.onDestroy()
-    }
-
-    private fun setupAd() {
-        adView = AdView(this)
-        adViewContainerMain.addView(adView)
-        adViewContainerMain.viewTreeObserver.addOnGlobalLayoutListener {
-            if (!initialLayoutComplete) {
-                initialLayoutComplete = true
-
-                adView.adUnitId = getString(R.string.main_banner_ad_id)
-                adView.adSize = getAdaptiveBannerAdSize(adViewContainerMain)
-                adView.loadAd(AdRequest.Builder().build())
-            }
+    private fun displayInterstitialAd(interstitialAd: InterstitialAd) {
+        // on below line we are
+        // checking if the ad is loaded
+        if (interstitialAd.isLoaded) {
+            // if the ad is loaded we are displaying
+            // interstitial ad by calling show method.
+            interstitialAd.show()
         }
     }
 }

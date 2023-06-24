@@ -16,6 +16,7 @@
 
     <!-- Admob -->
     <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+<!--    <string name="admob_app_id">ca-app-pub-9210368304205371~9630057679</string>-->
     <string name="main_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="comments_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="comment_replies_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
