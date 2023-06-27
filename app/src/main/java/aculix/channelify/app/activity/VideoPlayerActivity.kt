@@ -6,6 +6,7 @@ import aculix.channelify.app.utils.FullScreenHelper
 import aculix.channelify.app.viewmodel.VideoPlayerViewModel
 import aculix.core.extensions.toast
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.PictureInPictureParams
 import android.content.ComponentName
 import android.content.Context
@@ -15,6 +16,7 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.telecom.VideoProfile.isPaused
 import android.util.Rational
 import android.view.ContextThemeWrapper
 import android.view.View
@@ -22,12 +24,14 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatToggleButton
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
@@ -38,10 +42,27 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
 
+
     companion object {
         const val VIDEO_ID = "video_id"
+        lateinit var interstitialAd: InterstitialAd
+        lateinit var adRequest: AdRequest
 
         fun startActivity(context: Context?, videoId: String) {
+
+            MobileAds.initialize(context)
+            adRequest = AdRequest.Builder().build()
+            interstitialAd = InterstitialAd(context)
+            interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+            interstitialAd.loadAd(adRequest)
+
+            interstitialAd.setAdListener(object : AdListener() {
+                override fun onAdLoaded() {
+                    if (interstitialAd.isLoaded) {
+                        interstitialAd.show()
+                    }
+                }
+            })
             val intent = Intent(context, VideoPlayerActivity::class.java).apply {
                 putExtra(VIDEO_ID, videoId)
             }
@@ -71,7 +92,15 @@ class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
     }
 
     override fun onBackPressed() {
-        if (ytVideoPlayerView.isFullScreen()) ytVideoPlayerView.exitFullScreen() else super.onBackPressed()
+        if (ytVideoPlayerView.isFullScreen()) {
+            ytVideoPlayerView.exitFullScreen()
+        }
+        else{
+            val intent = Intent()
+            intent.putExtra("isPaused", "false")
+            setResult(Activity.RESULT_OK, intent)
+            super.onBackPressed()
+        }
     }
 
     private fun initYouTubePlayer() {

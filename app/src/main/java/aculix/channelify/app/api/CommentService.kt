@@ -1,8 +1,6 @@
 package aculix.channelify.app.api
 
 import aculix.channelify.app.model.Comment
-import aculix.channelify.app.model.CommentReply
-import aculix.channelify.app.model.PlaylistItemInfo
 import aculix.channelify.app.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET

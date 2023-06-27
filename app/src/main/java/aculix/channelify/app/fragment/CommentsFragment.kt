@@ -51,9 +51,6 @@ class CommentsFragment : Fragment() {
     private val SORT_BY_RELEVANCE = "relevance"
     private val SORT_BY_TIME = "time"
 
-    private lateinit var adView: AdView
-    private var initialLayoutComplete = false
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -75,7 +72,6 @@ class CommentsFragment : Fragment() {
         ivSortComments.setOnClickListener { onSortClick(it) }
         ivCloseComments.setOnClickListener { onCloseClick() }
 
-        if (Channelify.isAdEnabled) setupAd() else adViewContainerComments.makeGone()
     }
 
     override fun onSaveInstanceState(_outState: Bundle) {
@@ -86,19 +82,9 @@ class CommentsFragment : Fragment() {
 
     override fun onPause() {
         retrySnackbar?.dismiss() // Dismiss the retrySnackbar if already present
-        if (Channelify.isAdEnabled) adView.pause()
         super.onPause()
     }
 
-    override fun onResume() {
-        if (Channelify.isAdEnabled) adView.resume()
-        super.onResume()
-    }
-
-    override fun onDestroy() {
-        if (Channelify.isAdEnabled) adView.destroy()
-        super.onDestroy()
-    }
 
     private fun setupRecyclerView(savedInstanceState: Bundle?) {
         val asyncDifferConfig = AsyncDifferConfig.Builder<Comment.Item>(object :
@@ -253,20 +239,6 @@ class CommentsFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
-    }
-
-    private fun setupAd() {
-        adView = AdView(context)
-        adViewContainerComments.addView(adView)
-        adViewContainerComments.viewTreeObserver.addOnGlobalLayoutListener {
-            if (!initialLayoutComplete) {
-                initialLayoutComplete = true
-
-                adView.adUnitId = getString(R.string.comments_banner_ad_id)
-                adView.adSize = activity?.getAdaptiveBannerAdSize(adViewContainerComments)
-                adView.loadAd(AdRequest.Builder().build())
-            }
-        }
     }
 }
 

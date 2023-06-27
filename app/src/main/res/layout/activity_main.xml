@@ -20,14 +20,6 @@
         app:layout_constraintVertical_bias="1.0"
         app:navGraph="@navigation/nav_graph" />
 
-    <FrameLayout
-        android:id="@+id/adViewContainerMain"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavView"
         android:layout_width="0dp"

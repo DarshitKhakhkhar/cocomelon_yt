@@ -71,8 +71,6 @@ class CommentRepliesFragment : Fragment() {
         setupObservables()
 
         ivCloseCommentReplies.setOnClickListener { onCloseClick() }
-
-        if (Channelify.isAdEnabled) setupAd() else adViewContainerCommentReplies.makeGone()
     }
 
     override fun onSaveInstanceState(_outState: Bundle) {
@@ -83,19 +81,9 @@ class CommentRepliesFragment : Fragment() {
 
     override fun onPause() {
         retrySnackbar?.dismiss() // Dismiss the retrySnackbar if already present
-        if (Channelify.isAdEnabled) adView.pause()
         super.onPause()
     }
 
-    override fun onResume() {
-        if (Channelify.isAdEnabled) adView.resume()
-        super.onResume()
-    }
-
-    override fun onDestroy() {
-        if (Channelify.isAdEnabled) adView.destroy()
-        super.onDestroy()
-    }
 
     private fun setupRecyclerView(savedInstanceState: Bundle?) {
         val asyncDifferConfig = AsyncDifferConfig.Builder<CommentReply.Item>(object :
@@ -190,17 +178,4 @@ class CommentRepliesFragment : Fragment() {
         findNavController().popBackStack()
     }
 
-    private fun setupAd() {
-        adView = AdView(context)
-        adViewContainerCommentReplies.addView(adView)
-        adViewContainerCommentReplies.viewTreeObserver.addOnGlobalLayoutListener {
-            if (!initialLayoutComplete) {
-                initialLayoutComplete = true
-
-                adView.adUnitId = getString(R.string.comment_replies_banner_ad_id)
-                adView.adSize = activity?.getAdaptiveBannerAdSize(adViewContainerCommentReplies)
-                adView.loadAd(AdRequest.Builder().build())
-            }
-        }
-    }
 }
