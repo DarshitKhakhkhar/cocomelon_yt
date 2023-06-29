@@ -1,5 +1,5 @@
 package aculix.channelify.app.fragment
-
+//import aculix.channelify.app.ButtonClickListener
 import aculix.channelify.app.R
 import aculix.channelify.app.activity.VideoPlayerActivity
 import aculix.channelify.app.fastadapteritems.HomeItem
@@ -20,10 +20,6 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.fastadapter.FastAdapter
@@ -47,7 +43,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var isFirstPageLoading = true
     private var retrySnackbar: Snackbar? = null
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
@@ -62,6 +57,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setupRecyclerView(savedInstanceState)
         onRetryButtonClick()
     }
+
+
 
     override fun onSaveInstanceState(_outState: Bundle) {
         homeAdapter?.let {
@@ -220,6 +217,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
      * Called when an item of the RecyclerView is clicked
      */
     private fun onItemClick() {
+
         homeAdapter?.onClickListener = { view, adapter, item, position ->
             if (item is HomeItem) {
                 VideoPlayerActivity.startActivity(

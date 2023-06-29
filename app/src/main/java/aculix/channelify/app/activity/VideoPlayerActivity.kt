@@ -1,30 +1,17 @@
 package aculix.channelify.app.activity
-
 import aculix.channelify.app.R
 import aculix.channelify.app.fragment.VideoDetailsFragment
 import aculix.channelify.app.utils.FullScreenHelper
+import aculix.channelify.app.viewmodel.PausedModel
 import aculix.channelify.app.viewmodel.VideoPlayerViewModel
-import aculix.core.extensions.toast
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.PictureInPictureParams
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
-import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import android.telecom.VideoProfile.isPaused
-import android.util.Rational
-import android.view.ContextThemeWrapper
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatToggleButton
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -43,10 +30,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
 
 
+
     companion object {
         const val VIDEO_ID = "video_id"
         lateinit var interstitialAd: InterstitialAd
         lateinit var adRequest: AdRequest
+
 
         fun startActivity(context: Context?, videoId: String) {
 
@@ -96,8 +85,9 @@ class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
             ytVideoPlayerView.exitFullScreen()
         }
         else{
+
+            PausedModel.setYourVariable(false)
             val intent = Intent()
-            intent.putExtra("isPaused", "false")
             setResult(Activity.RESULT_OK, intent)
             super.onBackPressed()
         }

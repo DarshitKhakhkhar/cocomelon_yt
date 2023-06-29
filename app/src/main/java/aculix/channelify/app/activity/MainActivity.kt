@@ -1,6 +1,6 @@
 package aculix.channelify.app.activity
 import aculix.channelify.app.R
-import android.app.Activity
+import aculix.channelify.app.viewmodel.PausedModel
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,24 +14,27 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var interstitialAd2: InterstitialAd
     private lateinit var adRequest2: AdRequest
-    var isPaused = false;
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("dk", "onCreate: ")
 
         val navController = findNavController(R.id.navHostFragment)
         bottomNavView.setupWithNavController(navController)
 
     }
 
+
+
+
     override fun onResume() {
 
-        Log.d("dk", "onResume: ")
         super.onResume()
-        if (isPaused) {
+
+        if (PausedModel.getYourVariable()) {
             MobileAds.initialize(this)
             adRequest2 = AdRequest.Builder().build()
             interstitialAd2 = InterstitialAd(this)
@@ -39,14 +42,14 @@ class MainActivity : AppCompatActivity() {
 
             interstitialAd2.adListener = object : AdListener() {
                 override fun onAdLoaded() {
-                    if (interstitialAd2.isLoaded && isPaused) {
+                    if (interstitialAd2.isLoaded && PausedModel.getYourVariable()) {
                         interstitialAd2.show()
                     }
                 }
 
                 override fun onAdClosed() {
                     super.onAdClosed()
-                    isPaused=false
+                    PausedModel.setYourVariable(false)
                 }
 
                 override fun onAdFailedToLoad(errorCode: Int) {
@@ -59,16 +62,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
-
-        Log.d("dk", "onPause: ")
         super.onPause()
-        isPaused = true
+        PausedModel.setYourVariable(true)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        isPaused = false
+    PausedModel.setYourVariable(false)
     }
+
+
 
 }
 
