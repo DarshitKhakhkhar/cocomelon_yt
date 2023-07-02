@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_home.xml" value="0.1665" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_info.xml" value="0.1665" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_instagram.xml" value="0.179" />
+        <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1525" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_sort.xml" value="0.1665" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_star.xml" value="0.1665" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/drawable/ic_store.xml" value="0.1665" />
@@ -36,7 +37,7 @@
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/layout/fragment_video_details.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/layout/item_home.xml" value="0.25" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/layout/item_search.xml" value="0.25" />
-        <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/layout/widget_toolbar.xml" value="0.25" />
+        <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/layout/widget_toolbar.xml" value="0.264" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/menu/app_info_menu.xml" value="0.25" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/menu/bab_menu_video_details.xml" value="0.25" />
         <entry key="..\:/Users/Dk/AndroidStudioProjects/Cocomelon-master/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />
