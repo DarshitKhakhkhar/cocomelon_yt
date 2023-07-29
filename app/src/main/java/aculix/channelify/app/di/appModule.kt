@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package aculix.channelify.app.di
 
 import aculix.channelify.app.BuildConfig

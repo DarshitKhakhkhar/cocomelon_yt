@@ -1,26 +1,22 @@
 package aculix.channelify.app.fragment
 
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
 import aculix.channelify.app.R
 import aculix.channelify.app.activity.VideoPlayerActivity
-import aculix.channelify.app.fastadapteritems.HomeItem
 import aculix.channelify.app.fastadapteritems.PlaylistVideoItem
 import aculix.channelify.app.fastadapteritems.ProgressIndicatorItem
 import aculix.channelify.app.model.PlaylistItemInfo
 import aculix.channelify.app.paging.Status
 import aculix.channelify.app.utils.DateTimeUtils
 import aculix.channelify.app.utils.DividerItemDecorator
-import aculix.channelify.app.viewmodel.HomeViewModel
 import aculix.channelify.app.viewmodel.PlaylistVideosViewModel
-import aculix.core.extensions.makeGone
 import aculix.core.extensions.startShareTextIntent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,7 +25,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
 import com.afollestad.materialdialogs.LayoutMode
@@ -44,7 +39,6 @@ import com.mikepenz.fastadapter.GenericFastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.paged.PagedModelAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_playlist_details.view.*
 import kotlinx.android.synthetic.main.fragment_playlist_videos.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -209,7 +203,7 @@ class PlaylistVideosFragment : Fragment() {
      * Called when an item of the RecyclerView is clicked
      */
     private fun onItemClick() {
-        playlistVideosAdapter.onClickListener = { view, adapter, item, position ->
+        playlistVideosAdapter.onClickListener = { _, _, item, _ ->
             if (item is PlaylistVideoItem) {
                 VideoPlayerActivity.startActivity(context, item.playlistItem?.contentDetails?.videoId!!)
             }

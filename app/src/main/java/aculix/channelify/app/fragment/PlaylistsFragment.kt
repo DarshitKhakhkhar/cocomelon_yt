@@ -10,7 +10,6 @@ import aculix.channelify.app.utils.DividerItemDecorator
 import aculix.channelify.app.viewmodel.PlaylistsViewModel
 import aculix.core.extensions.makeGone
 import aculix.core.extensions.makeVisible
-import aculix.core.extensions.openUrl
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -196,7 +195,7 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
     }
 
     private fun onItemClick() {
-        playlistsAdapter.onClickListener = { view, adapter, item, position ->
+        playlistsAdapter.onClickListener = { _, _, item, _ ->
             if (item is PlaylistItem) {
                 val action =
                     PlaylistsFragmentDirections.actionPlaylistsFragmentToPlaylistVideosFragment(

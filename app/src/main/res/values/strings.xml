@@ -5,7 +5,7 @@
     <string name="channel_id">UCbCmjCuTUZos6Inko4u57UQ</string>
     <!-- Admob -->
     <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
-<!--    <string name="admob_app_id">ca-app-pub-9210368304205371~9630057679</string>-->
+    <!--    <string name="admob_app_id">ca-app-pub-9210368304205371~9630057679</string>-->
 
     <!-- Text -->
     <string name="text_comments">Comments</string>
@@ -77,6 +77,7 @@
     <string name="dialog_theme_title">Choose Theme</string>
     <string name="menu_store">Store</string>
     <string name="menu_app_info">App Info</string>
+<!--    <string name="youtube_api_key">AIzaSyCEPw&#45;&#45;NdLN-N4g9_a0TJ84sdcsH9K19T0</string>-->
 
 
 </resources>

@@ -234,7 +234,7 @@ class SearchFragment : Fragment() {
      * Called when an item of the RecyclerView is clicked
      */
     private fun onItemClick() {
-        searchAdapter.onClickListener = { view, adapter, item, position ->
+        searchAdapter.onClickListener = { _, _, item, _ ->
             if (item is SearchItem) {
                 VideoPlayerActivity.startActivity(context, item.searchedVideo?.id?.videoId!!)
             }

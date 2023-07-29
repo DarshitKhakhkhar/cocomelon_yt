@@ -1,18 +1,16 @@
 package aculix.channelify.app.fragment
 
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.View
-
 import aculix.channelify.app.R
 import aculix.channelify.app.activity.VideoPlayerActivity
 import aculix.channelify.app.fastadapteritems.FavoriteItem
 import aculix.channelify.app.viewmodel.FavoritesViewModel
-import aculix.core.extensions.openUrl
+import android.os.Bundle
+import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -147,7 +145,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
      * Called when an item of the RecyclerView is clicked
      */
     private fun onItemClick() {
-        favoritesAdapter.onClickListener = { view, adapter, item, position ->
+        favoritesAdapter.onClickListener = { _, _, item, _ ->
             VideoPlayerActivity.startActivity(context, item.favoriteVideo.id)
             false
         }

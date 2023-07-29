@@ -10,16 +10,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
@@ -28,32 +23,15 @@ import kotlinx.android.synthetic.main.activity_video_player.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
+
 class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
 
-//    private lateinit var interstitialAd2: InterstitialAd
-//    private lateinit var adRequest2: AdRequest
+
 
     companion object {
         const val VIDEO_ID = "video_id"
-        lateinit var interstitialAd: InterstitialAd
-        lateinit var adRequest: AdRequest
-
 
         fun startActivity(context: Context?, videoId: String) {
-
-            MobileAds.initialize(context)
-            adRequest = AdRequest.Builder().build()
-            interstitialAd = InterstitialAd(context)
-            interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-            interstitialAd.loadAd(adRequest)
-
-            interstitialAd.setAdListener(object : AdListener() {
-                override fun onAdLoaded() {
-                    if (interstitialAd.isLoaded) {
-                        interstitialAd.show()
-                    }
-                }
-            })
             val intent = Intent(context, VideoPlayerActivity::class.java).apply {
                 putExtra(VIDEO_ID, videoId)
             }
@@ -150,34 +128,4 @@ class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
             }
         })
     }
-
-
-//    override fun onResume() {
-//        super.onResume()
-//        if (PausedModel.getYourVariable()) {
-//            MobileAds.initialize(this)
-//            adRequest2 = AdRequest.Builder().build()
-//            interstitialAd2 = InterstitialAd(this)
-//            interstitialAd2.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-//
-//            interstitialAd2.adListener = object : AdListener() {
-//                override fun onAdLoaded() {
-//                    if (interstitialAd2.isLoaded && PausedModel.getYourVariable()) {
-//                        interstitialAd2.show()
-//                    }
-//                }
-//
-//                override fun onAdClosed() {
-//                    super.onAdClosed()
-//                    PausedModel.setYourVariable(false)
-//                }
-//
-//                override fun onAdFailedToLoad(errorCode: Int) {
-//                    Log.d("dk", "onAdFailedToLoad: $errorCode")
-//                }
-//            }
-//
-//            interstitialAd2.loadAd(adRequest2)
-//        }
-//    }
 }

@@ -8,7 +8,9 @@ import aculix.channelify.app.model.PlaylistItemInfo
 import aculix.channelify.app.paging.Status
 import aculix.channelify.app.utils.DividerItemDecorator
 import aculix.channelify.app.viewmodel.HomeViewModel
-import aculix.core.extensions.*
+import aculix.core.extensions.isInternetAvailable
+import aculix.core.extensions.makeGone
+import aculix.core.extensions.makeVisible
 import aculix.core.helper.ResultWrapper
 import android.os.Bundle
 import android.view.View
@@ -218,7 +220,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
      */
     private fun onItemClick() {
 
-        homeAdapter?.onClickListener = { view, adapter, item, position ->
+        homeAdapter?.onClickListener = { _, _, item, _ ->
             if (item is HomeItem) {
                 VideoPlayerActivity.startActivity(
                     context,

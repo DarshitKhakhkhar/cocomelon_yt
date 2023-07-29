@@ -52,7 +52,8 @@
         <!-- Admob -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
     </application>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
 </manifest>

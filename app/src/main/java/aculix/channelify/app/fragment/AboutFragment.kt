@@ -1,10 +1,6 @@
 package aculix.channelify.app.fragment
 
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.View
-
 import aculix.channelify.app.R
 import aculix.channelify.app.model.ChannelInfo
 import aculix.channelify.app.sharedpref.AppPref
@@ -14,13 +10,14 @@ import aculix.core.extensions.*
 import aculix.core.helper.ResultWrapper
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.res.Configuration
 import android.net.Uri
+import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import coil.api.load
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
@@ -59,9 +56,9 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
 
             // Change theme menu item icon based on current theme
             val themeDrawable = if (AppPref.isLightThemeEnabled) ContextCompat.getDrawable(
-                context!!,
+                requireContext(),
                 R.drawable.ic_theme_light
-            ) else ContextCompat.getDrawable(context!!, R.drawable.ic_theme_dark)
+            ) else ContextCompat.getDrawable(requireContext(), R.drawable.ic_theme_dark)
             menu.findItem(R.id.miThemeAbout).icon = themeDrawable
 
 
@@ -81,7 +78,7 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
      * Fetches the info of channel
      */
     private fun fetchChannelInfo() {
-        if (isInternetAvailable(context!!)) {
+        if (isInternetAvailable(requireContext())) {
             viewModel.getChannelInfo()
         } else {
             showChannelInfoErrorState()
@@ -190,7 +187,7 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
 
         val currentThemeIndex = if (AppPref.isLightThemeEnabled) 0 else 1
 
-        MaterialDialog(context!!).show {
+        MaterialDialog(requireContext()).show {
             title(R.string.dialog_theme_title)
             listItemsSingleChoice(
                 items = themeList,
