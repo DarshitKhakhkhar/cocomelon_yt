@@ -192,7 +192,7 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             listItemsSingleChoice(
                 items = themeList,
                 initialSelection = currentThemeIndex
-            ) { dialog, index, text ->
+            ) { _, _, text ->
                 when (text) {
                     getString(R.string.dialog_theme_text_light) -> {
                         setTheme(AppCompatDelegate.MODE_NIGHT_NO)

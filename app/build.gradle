@@ -134,4 +134,7 @@ dependencies {
 
     // Modules
     implementation project(':core')
+
+
+    implementation 'com.startapp:inapp-sdk:4.11.0'
 }

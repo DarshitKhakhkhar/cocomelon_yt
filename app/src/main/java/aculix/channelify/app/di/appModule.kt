@@ -3,7 +3,6 @@
 package aculix.channelify.app.di
 
 import aculix.channelify.app.BuildConfig
-import aculix.channelify.app.R
 import aculix.channelify.app.db.ChannelifyDatabase
 import android.annotation.SuppressLint
 import android.app.Application
@@ -96,7 +95,7 @@ private fun provideOkHttpClient(
             val originalHttpUrl = original.url
 
             val url = originalHttpUrl.newBuilder()
-                .addQueryParameter("key", androidContext.getString(R.string.youtube_api_key))
+                .addQueryParameter("key","AIzaSyCEPw--NdLN-N4g9_a0TJ84sdcsH9K19T0")
                 .build()
 
             val requestBuilder = original.newBuilder().url(url)

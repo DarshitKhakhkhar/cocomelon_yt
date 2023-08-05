@@ -1,18 +1,17 @@
 package aculix.channelify.app
 
+//import com.google.android.gms.ads.MobileAds
+//import com.google.android.gms.ads.RequestConfiguration
 import aculix.channelify.app.di.*
 import aculix.channelify.app.sharedpref.AppPref
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.chibatching.kotpref.Kotpref
-//import com.google.android.gms.ads.MobileAds
-//import com.google.android.gms.ads.RequestConfiguration
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import saschpe.android.customtabs.CustomTabsActivityLifecycleCallbacks
 import timber.log.Timber
-import java.util.*
 
 class Channelify : Application() {
 
@@ -73,15 +72,6 @@ class Channelify : Application() {
             )
         }
     }
-
-//    private fun initializeAdmob() {
-//        MobileAds.initialize(this) {
-//            val testDeviceIds = listOf("7BD04413716C0B3DD5C73F814E02D21A")
-//            val configuration =
-//                RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-//            MobileAds.setRequestConfiguration(configuration)
-//        }
-//    }
 
     private fun initializeCustomTabs() {
         registerActivityLifecycleCallbacks(CustomTabsActivityLifecycleCallbacks())

@@ -41,6 +41,7 @@ dependencies {
     // Custom Tabs
     implementation "saschpe.android:customtabs:$saschpeCustomTabs"
     implementation "androidx.browser:browser:$browserVersion"
+
 }
 
 repositories {

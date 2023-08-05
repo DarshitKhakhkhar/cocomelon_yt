@@ -19,6 +19,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
+import com.startapp.sdk.adsbase.Ad
+import com.startapp.sdk.adsbase.StartAppAd
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener
 import kotlinx.android.synthetic.main.activity_video_player.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,6 +39,7 @@ class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
                 putExtra(VIDEO_ID, videoId)
             }
             context?.startActivity(intent)
+
         }
     }
 
@@ -44,6 +48,7 @@ class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
     lateinit var fullScreenHelper: FullScreenHelper
     lateinit var videoId: String
     private var videoElapsedTimeInSeconds = 0f
+    private lateinit var startAppAd: StartAppAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +62,29 @@ class VideoPlayerActivity : AppCompatActivity(R.layout.activity_video_player) {
             bundleOf(VideoDetailsFragment.VIDEO_ID to videoId)
         )
 
-        initYouTubePlayer()
+//        StartAppAd.showAd(this);
+        startAppAd = StartAppAd(this)
+
+        showInterstitialAd()
+
+
+    }
+
+    private fun showInterstitialAd() {
+        // Load the interstitial ad
+        startAppAd.loadAd(StartAppAd.AdMode.AUTOMATIC, object : AdEventListener {
+            override fun onReceiveAd(p0: Ad) {
+                // The ad has been received, now show it
+                startAppAd.showAd()
+                initYouTubePlayer()
+            }
+
+            override fun onFailedToReceiveAd(p0: Ad?) {
+                // Failed to receive the ad. Proceed to play the video.
+                // You can handle this situation as per your requirement.
+                initYouTubePlayer()
+            }
+        })
     }
 
     override fun onBackPressed() {

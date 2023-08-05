@@ -17,7 +17,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -34,6 +33,7 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.GenericFastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.mikepenz.fastadapter.paged.ExperimentalPagedSupport
 import com.mikepenz.fastadapter.paged.PagedModelAdapter
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -85,7 +85,9 @@ class SearchFragment : Fragment() {
 
     private fun setupSearchView() {
         svSearch.apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            isIconified = false
+            setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
                     svSearch.dismissKeyboard(context)
 
@@ -118,6 +120,8 @@ class SearchFragment : Fragment() {
         }
     }
 
+
+    @OptIn(ExperimentalPagedSupport::class)
     private fun setupRecyclerView(savedInstanceState: Bundle?) {
         val asyncDifferConfig = AsyncDifferConfig.Builder<SearchedVideo.Item>(object :
             DiffUtil.ItemCallback<SearchedVideo.Item>() {

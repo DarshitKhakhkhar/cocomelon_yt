@@ -4,6 +4,13 @@
     package="aculix.channelify.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" tools:node="remove"/>
+
+
 
     <application
         android:name=".Channelify"
@@ -17,6 +24,7 @@
 
         <activity
             android:name=".SplashScreenNew"
+            android:exported="true"
             android:screenOrientation="portrait">
 
             <intent-filter>
@@ -40,20 +48,18 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <!-- FCM -->
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_stat_notification" />
+            android:name="com.startapp.sdk.APPLICATION_ID"
+            android:value="206168468" />
 
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorPrimary" />
+            android:name="com.startapp.sdk.MIXED_AUDIENCE"
+            android:value="true"/>
 
-        <!-- Admob -->
         <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:name="com.startapp.sdk.CHILD_DIRECTED"
+            android:value="true"/>
+
     </application>
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
 </manifest>

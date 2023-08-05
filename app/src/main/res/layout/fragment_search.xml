@@ -31,11 +31,10 @@
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp">
 
-            <SearchView
+            <androidx.appcompat.widget.SearchView
                 android:id="@+id/svSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:iconifiedByDefault="false"
                 android:queryBackground="@color/transparentColor"
                 android:queryHint="@string/menu_search_videos"
                 android:searchHintIcon="@null"
